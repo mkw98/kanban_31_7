@@ -1,6 +1,7 @@
 import Lane from '../models/lane';
 import Note from '../models/note';
 import uuid from 'uuid';
+import mongoose from 'mongoose';
 
 export function addLane(req, res) {
   if (!req.body.name) {
@@ -20,6 +21,7 @@ export function addLane(req, res) {
   });
 }
 
+
 export function getLanes(req, res) {
   Lane.find().exec((err, lanes) => {
     if (err) {
@@ -28,26 +30,42 @@ export function getLanes(req, res) {
     res.json({ lanes });
   });
 }
+ 
+export function updateLane(req, res) {
+  Lane.update({ id: req.params.laneId }, { $set: { name: req.body.name }}).exec((err, name) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.json({ name });
+  });
+}
 
 export function deleteLane(req, res) {
+  let notesToRemove = [];
+
   Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
     if (err) {
       res.status(500).send(err);
     }
 
-    lane.remove(() => {
-      res.status(200).end();
-    });
-  });
-}
+    if (lane.notes.length) {
+      for (let i = 0; i < lane.notes.length; i++) {
+        notesToRemove.push(mongoose.Types.ObjectId(lane.notes[i]._id));
+      }
 
-export function updateLane(req, res) {
-  Lane.findOne({id: req.params.laneId})
-    .then((lane) => {
-      lane.name = req.body.name
-      return lane.save()
-    })
-    .then(() => {
-      res.json(200).end()
-    })
+      Note.remove({ _id: { $in: notesToRemove} }).exec((err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+
+        lane.remove(() => {
+          return res.status(200).end();
+        });
+      });
+    } else {
+      lane.remove(() => {
+        return res.status(200).end();
+      });
+    }
+  });
 }

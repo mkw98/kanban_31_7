@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 import Lane from './Lane';
-import { deleteLaneRequest, updateLaneRequest, editLane } from './LaneActions';
-import { createNoteRequest, moveBetweenLanes } from '../Note/NoteActions';
-import { createLaneRequest, fetchLanes } from './LaneActions';
+import { deleteLaneRequest, createLaneRequest, fetchLanes,updateLaneRequest, editLane } from './LaneActions';
+import { createNote, createNoteRequest, moveBetweenLanes } from '../Note/NoteActions';
 import * as laneActions from './LaneActions';
-import { createNote } from '../Note/NoteActions';
 import { compose } from 'redux';
 import { DropTarget } from 'react-dnd';
 import ItemTypes from '../Kanban/itemTypes';

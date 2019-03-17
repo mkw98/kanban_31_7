@@ -1,1 +1,6 @@
 /* Note styles */
+.Note{
+  min-height: 100px;
+  width: 120px;
+  background-image: url('yellow.jpg');
+}

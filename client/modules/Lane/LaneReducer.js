@@ -1,5 +1,5 @@
-import { DELETE_NOTE, CREATE_NOTE, MOVE_WITHIN_LANE } from '../Note/NoteActions';
-import { CREATE_LANE, CREATE_LANES, UPDATE_LANE, DELETE_LANE, EDIT_LANE, MOVE_BETWEEN_LANES } from './LaneActions';
+import { DELETE_NOTE, CREATE_NOTE, MOVE_BETWEEN_LANES } from '../Note/NoteActions';
+import { CREATE_LANE, CREATE_LANES, UPDATE_LANE, DELETE_LANE, EDIT_LANE, MOVE_WITHIN_LANE } from './LaneActions';
 
 
 import omit from 'lodash/omit';
@@ -32,6 +32,7 @@ export default function lanes(state = initialState, action) {
 
      return { ...state, [action.laneId]: newLane };
    }
+
    //case CREATE_NOTE:
     //  return state.map(lane => {
     //    if (lane.id === action.laneId) {
@@ -52,16 +53,6 @@ export default function lanes(state = initialState, action) {
         };
       }
 
-    case DELETE_NOTE:
-      {
-        const newLane = { ...state[action.laneId],
-        };
-        newLane.notes = newLane.notes.filter(noteId => noteId !== action.noteId);
-
-        return { ...state,
-          [action.laneId]: newLane,
-        };
-      }
 
    //case DELETE_NOTE:
     //  return state.map(lane => {
@@ -94,3 +85,4 @@ export default function lanes(state = initialState, action) {
      return state;
  }
 }
+
