@@ -1,7 +1,8 @@
 
 /* Lane styles */
 .Lane{
-  background-image: url('cork.jpg');
+  /*background-image: url('../../images/cork.jpg'); */
+  background-color: #ED9D4D;
   width: 200px;
   min-height: 500px;
   float: left;

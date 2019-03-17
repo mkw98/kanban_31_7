@@ -2,5 +2,6 @@
 .Note{
   min-height: 100px;
   width: 120px;
-  background-image: url('yellow.jpg');
+  /*background-image: url('../../images/yellow.jpg'); */
+  background-color: yellow;
 }
