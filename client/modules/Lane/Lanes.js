@@ -4,9 +4,11 @@ import { PropTypes } from 'prop-types';
 
 const Lanes = ({ lanes }) => {
   return (
-    <div className="lanes">{lanes.map(lane =>
-      <Lane className="lane" key={lane.id} lane={lane} />
-    )}</div>
+    <div className="lanes">
+      {lanes.map((lane, id) =>
+        <Lane className="Lane" key={id} lane={lane} />
+      )}
+    </div>
   );
 };
 

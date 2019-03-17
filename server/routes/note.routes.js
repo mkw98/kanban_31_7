@@ -7,12 +7,14 @@ const router = new Router();
 router.route('/notes').post(NoteController.addNote);
 
 //delete note
-router.route('/notes/:noteId').delete(NoteController.deleteNote);
+router.route('/lanes/:laneId/notes/:noteId').delete(NoteController.deleteNote);
 
 //update note
 router.route('/notes/:noteId').put(NoteController.updateNote);
 
 // edit note 
-//router.route('/notes/:noteId').put(NoteController.editNote);
+//router.route('/lanes/:laneId/notes/:noteId').put(NoteController.editNote);
+
+
 
 export default router;

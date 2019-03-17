@@ -1,4 +1,16 @@
+
 /* Lane styles */
+.Lane{
+  background-color: #e08d3a;
+  width: 200px;
+  min-height: 500px;
+  float: left;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .AddLane {
   background-color: green;
 }
